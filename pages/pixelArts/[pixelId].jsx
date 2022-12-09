@@ -7,6 +7,7 @@ import {authOptions} from "../api/auth/[...nextauth]";
 import {getUserByEmail} from "../../lib/user.service";
 import {getPixelById} from "../../lib/pixel.service";
 import {createBlankArray} from "../../lib/utils";
+import Image from "next/image";
 
 export default function ViewPixelArt({user, pixelArt, isOwner}) {
     const router = useRouter();
@@ -48,6 +49,10 @@ export default function ViewPixelArt({user, pixelArt, isOwner}) {
 
                 <div className='flex flex-col items-center justify-around h-1/6'>
                     <h2 className="text-center text-7xl">Pixel Art #{pixelArt.id}</h2>
+                    <div className={"flex"}>
+                        <p>Creator: {pixelArt.user.name}</p>
+                        <Image src={pixelArt.user.image} height={100} width={100} className={"w-10 h-10 rounded-full"}/>
+                    </div>
 
                     <div className='flex'>
                         <button
@@ -72,7 +77,7 @@ export default function ViewPixelArt({user, pixelArt, isOwner}) {
 
                 </div>
 
-                <div className="flex flex-col max-h-screen items-center h-5/6">
+                <div className="flex mt-10 flex-col max-h-screen items-center h-5/6">
                     <Pixels pixelColors={pixelColors} onPixelClick={(rowIndex, colIndex) => {
                         const newPixelColors = [...pixelColors]
                         newPixelColors[rowIndex][colIndex] = newPixelColors[rowIndex][colIndex] === 1 ? 0 : 1
