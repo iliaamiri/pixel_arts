@@ -6,7 +6,7 @@ import {signIn, signOut} from "next-auth/react";
 export default function SiteNavigation({user}) {
     const router = useRouter()
     const navigation = [
-        { name: 'New', Icon: PlusCircleIcon, href: '/pixel/create', current: router.pathname === '/pixel/create' },
+        { name: 'New', Icon: PlusCircleIcon, href: '/pixelArts/create', current: router.pathname === '/pixel/create' },
     ]
 
     const handleSearch = (text) => {
