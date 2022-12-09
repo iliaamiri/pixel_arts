@@ -41,7 +41,7 @@ export default function Home() {
                             {!users ? (
                                 <div>Loading...</div>
                             ) : users?.map(user => (
-                                <Link href={"/profile/" + user.id}>
+                                <Link key={user.id} href={"/profile/" + user.id}>
                                     <div key={user.id} className={"flex flex-row items-center"}>
                                         <Image src={user.image} height={100} width={100} className={"w-10 h-10 rounded-full"}/>
                                         <p className={"mx-2"}>{user.name}</p>
