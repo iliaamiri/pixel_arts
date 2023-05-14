@@ -64,18 +64,22 @@ export default function Home() {
                     {!pixelArts ? (
                       <Loading />
                         ) : pixelArts.map(pixelArt => (
-                      <Link href={`/pixelArts/${pixelArt.id}`} key={pixelArt.id} className="flex mt-7 flex-col items-center h-5/6 gap-4">
+                      <div key={pixelArt.id} className="flex mt-7 flex-col items-center h-5/6 gap-4">
                           <div>
-                              <h2 className="text-center text-4xl">Pixel Art #{pixelArt.id}</h2>
+                              <h2 className="text-center text-4xl">
+                                  <Link href={`/pixelArts/${pixelArt.id}`}>
+                                      Pixel Art #{pixelArt.id}
+                                  </Link>
+                              </h2>
                               <div className={"flex items-center gap-3"}>
                                   <p>Creator: {pixelArt.user.name}</p>
                                   <Image src={pixelArt.user.image} height={100} width={100} className={"w-10 h-10 rounded-full"} alt={pixelArt.user.name}/>
                               </div>
                           </div>
-                          <div className={'flex flex-col items-center h-5/6'}>
+                          <Link href={`/pixelArts/${pixelArt.id}`} className={'flex flex-col items-center h-5/6'}>
                               <Pixels pixelColors={JSON.parse(pixelArt.pixels)} />
-                          </div>
-                      </Link>
+                          </Link>
+                      </div>
                     ))}
                 </div>
             </div>
