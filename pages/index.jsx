@@ -12,6 +12,7 @@ export default function Home() {
     const router = useRouter();
 
     const [users, setUsers] = useState(null);
+    const [pixelArts, setPixelArts] = useState(null);
 
     useEffect(() => {
         (async () => {
@@ -21,6 +22,13 @@ export default function Home() {
                 alert(data.error);
             }
             setUsers(data);
+
+            const resopnse2 = await fetch('/api/pixel');
+            const data2 = await resopnse2.json();
+            if (!resopnse2.ok) {
+                alert(data2.error);
+            }
+            setPixelArts(data2);
         })()
     }, []);
 
@@ -35,21 +43,39 @@ export default function Home() {
                     <Link href='/pixelArts/create'
                           className={"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"}>Create</Link>
 
-                    <div className={"mt-5"}>
-                        <h2 className="text-center text-4xl">Users</h2>
-                        <div className={"flex flex-col items-center"}>
+                    <div className={"mt-5 flex flex-col gap-2"}>
+                        <h2 className="text-center text-5xl">Contributors</h2>
+                        <div className={"flex flex-row items-center gap-2 flex-wrap max-w-md"}>
                             {!users ? (
                                 <div>Loading...</div>
                             ) : users?.map(user => (
                                 <Link key={user.id} href={"/profile/" + user.id}>
                                     <div key={user.id} className={"flex flex-row items-center"}>
                                         <Image src={user.image} height={100} width={100} className={"w-10 h-10 rounded-full"}/>
-                                        <p className={"mx-2"}>{user.name}</p>
                                     </div>
                                 </Link>
                             ))}
                         </div>
                     </div>
+                </div>
+                <div className={'w-full h-5/6 mt-40'}>
+                    <h2 className={'text-center text-5xl'}>Pixels</h2>
+                    {!pixelArts ? (
+                      <div>Loading...</div>
+                    ) : pixelArts.map(pixelArt => (
+                      <div key={pixelArt.id} className="flex mt-7 flex-col items-center h-5/6 gap-4">
+                          <div>
+                              <h2 className="text-center text-4xl">Pixel Art #{pixelArt.id}</h2>
+                              <div className={"flex items-center gap-3"}>
+                                  <p>Creator: {pixelArt.user.name}</p>
+                                  <Image src={pixelArt.user.image} height={100} width={100} className={"w-10 h-10 rounded-full"} alt={pixelArt.user.name}/>
+                              </div>
+                          </div>
+                          <div className={'flex flex-col items-center h-5/6'}>
+                              <Pixels pixelColors={JSON.parse(pixelArt.pixels)} />
+                          </div>
+                      </div>
+                    ))}
                 </div>
             </div>
         </>

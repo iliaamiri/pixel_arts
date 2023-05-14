@@ -11,8 +11,6 @@ export default async function handler(req, res) {
     }
     const user = session.user;
 
-    console.log(session);
-
     const body = JSON.parse(req.body);
 
     const jsonGrid = body.jsonGrid;
@@ -20,8 +18,6 @@ export default async function handler(req, res) {
         res.status(400).json({ error: 'No json given' });
         return;
     }
-
-    console.log(jsonGrid);
 
     const createdPixel = await prisma.pixel.create({
         data: {

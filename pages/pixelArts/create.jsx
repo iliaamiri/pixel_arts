@@ -34,7 +34,6 @@ export default function CreatePixel() {
                                     method: 'POST',
                                     body: JSON.stringify({jsonGrid: JSON.stringify(pixelColors)}),
                                 });
-                                console.log(response);
                                 const data = await response.json();
                                 if (!response.ok) {
                                     alert(data.error);

@@ -7,7 +7,7 @@ import NextLink from 'next/link'
 
 import NextImage from 'next/image'
 
-import appIcon from '../public/vercel.svg'
+import appIcon from '../public/pixels.png'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')

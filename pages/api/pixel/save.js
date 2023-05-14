@@ -13,8 +13,6 @@ export default async function handler(req, res) {
     }
     const user = await getUserByEmail(session.user.email);
 
-    console.log(session);
-
     const body = JSON.parse(req.body);
 
     const { jsonGrid, pixelId } = body;
@@ -22,8 +20,6 @@ export default async function handler(req, res) {
         res.status(400).json({ error: 'No json given' });
         return;
     }
-
-    console.log(jsonGrid);
 
     const pixelArt = await getPixelById((typeof pixelId === 'string') ? parseInt(pixelId) : pixelId);
     if (!pixelArt) {

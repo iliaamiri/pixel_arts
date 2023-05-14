@@ -21,28 +21,29 @@ export default function Profile({user}) {
         (async function () {
             const response = await fetch(`/api/users/${user.id}/pixels`);
             const data = await response.json();
-            console.log(data)
             setPixelArts(data)
         })()
     }, []);
 
     return (
-        <>
+        <div>
             <SiteNavigation user={user}/>
-            <div className={"flex justify-center gap-10 align-center m-auto m-0"}>
+            <div className={"flex justify-center items-center py-5 gap-10 align-center"}>
                 <h3 className={"mt-5"}>{user.name}</h3>
                 <Image className={"rounded-full"} src={user.image} width={100} height={100}/>
             </div>
-            <div className='flex flex-col items-center justify-around h-1/6'>
-                {!pixelArts ? (
-                    <div>Loading...</div>
-                ) : pixelArts.map((pixelArt) => (
-                    <div className={"px-6 py-2 border-b border-gray-200 w-full rounded-t-lg"} key={pixelArt.id}>
-                        <Link href={`/pixelArts/${pixelArt.id}`}>Pixel Art #{pixelArt.id} click to see</Link>
-                    </div>
-                ))}
+            <div className={'w-full flex justify-center'}>
+                <div className='flex flex-col items-center justify-center h-1/6 w-4/12 border-2 gap-2 rounded-xl p-2'>
+                    {!pixelArts ? (
+                      <div>Loading...</div>
+                    ) : pixelArts.map((pixelArt) => (
+                      <Link href={`/pixelArts/${pixelArt.id}`} className={"px-6 py-2 border-b border-gray-200 w-full rounded hover:bg-gray-400 transition-all duration-300"} key={pixelArt.id}>
+                          Pixel Art #{pixelArt.id}
+                      </Link>
+                    ))}
+                </div>
             </div>
-        </>
+        </div>
     )
 }
 

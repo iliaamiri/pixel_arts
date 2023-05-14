@@ -49,9 +49,9 @@ export default function ViewPixelArt({user, pixelArt, isOwner}) {
 
                 <div className='flex flex-col items-center justify-around h-1/6'>
                     <h2 className="text-center text-7xl">Pixel Art #{pixelArt.id}</h2>
-                    <div className={"flex"}>
+                    <div className={"flex items-center gap-2 my-2"}>
                         <p>Creator: {pixelArt.user.name}</p>
-                        <Image src={pixelArt.user.image} height={100} width={100} className={"w-10 h-10 rounded-full"}/>
+                        <Image src={pixelArt.user.image} height={100} width={100} className={"w-10 h-10 rounded-full"} alt={''}/>
                     </div>
 
                     <div className='flex'>
