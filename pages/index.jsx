@@ -6,6 +6,7 @@ import {useRouter} from "next/router";
 import SiteNavigation from "../components/SiteNavigation";
 import Link from "next/link";
 import Image from "next/image";
+import Loading from "../components/Loading";
 
 export default function Home() {
     const {data: session} = useSession();
@@ -47,7 +48,7 @@ export default function Home() {
                         <h2 className="text-center text-5xl">Contributors</h2>
                         <div className={"flex flex-row items-center gap-2 flex-wrap max-w-md"}>
                             {!users ? (
-                                <div>Loading...</div>
+                                <Loading />
                             ) : users?.map(user => (
                                 <Link key={user.id} href={"/profile/" + user.id}>
                                     <div key={user.id} className={"flex flex-row items-center"}>
@@ -61,8 +62,8 @@ export default function Home() {
                 <div className={'w-full h-5/6 mt-40'}>
                     <h2 className={'text-center text-5xl'}>Pixels</h2>
                     {!pixelArts ? (
-                      <div>Loading...</div>
-                    ) : pixelArts.map(pixelArt => (
+                      <Loading />
+                        ) : pixelArts.map(pixelArt => (
                       <div key={pixelArt.id} className="flex mt-7 flex-col items-center h-5/6 gap-4">
                           <div>
                               <h2 className="text-center text-4xl">Pixel Art #{pixelArt.id}</h2>

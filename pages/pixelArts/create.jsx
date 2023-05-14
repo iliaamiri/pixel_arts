@@ -4,6 +4,7 @@ import SiteNavigation from "../../components/SiteNavigation";
 import Pixels from "../../components/Pixels";
 import {useState} from "react";
 import {createBlankArray} from "../../lib/utils";
+import Loading from "../../components/Loading";
 
 export default function CreatePixel() {
     const {data: session, status} = useSession();
@@ -16,7 +17,7 @@ export default function CreatePixel() {
     }
 
     return !session?.user ? (
-        <div>Loading...</div>
+        <Loading />
     ) : (
         <>
             <SiteNavigation user={session?.user ?? null} />
