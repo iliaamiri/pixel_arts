@@ -64,7 +64,7 @@ export default function Home() {
                     {!pixelArts ? (
                       <Loading />
                         ) : pixelArts.map(pixelArt => (
-                      <div key={pixelArt.id} className="flex mt-7 flex-col items-center h-5/6 gap-4">
+                      <Link href={`/pixelArts/${pixelArt.id}`} key={pixelArt.id} className="flex mt-7 flex-col items-center h-5/6 gap-4">
                           <div>
                               <h2 className="text-center text-4xl">Pixel Art #{pixelArt.id}</h2>
                               <div className={"flex items-center gap-3"}>
@@ -75,7 +75,7 @@ export default function Home() {
                           <div className={'flex flex-col items-center h-5/6'}>
                               <Pixels pixelColors={JSON.parse(pixelArt.pixels)} />
                           </div>
-                      </div>
+                      </Link>
                     ))}
                 </div>
             </div>
